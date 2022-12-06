@@ -15,7 +15,7 @@ public class PlayerController : MonoBehaviour
     public AudioClip jumpSound;
     public AudioClip crashSound;
     private AudioSource playerAudio;
-    private float zRange = 2.2;
+    private float zRange = 2.2f;
     private bool moveOr = true;
     // Start is called before the first frame update
     void Start()

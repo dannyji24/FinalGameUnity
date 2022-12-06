@@ -8,9 +8,11 @@ public class ScoreManager : MonoBehaviour
     public static ScoreManager instance;
     public Text scoreText;
     public Text HighScoreText;
+    public Text CollectablesText;
 
-    int score = 0;
-    int Highscore;
+    double score = 0;
+    double Highscore;
+    int collectables;
     public int lives = 1;
     
     // Start is called before the first frame update
@@ -29,6 +31,9 @@ public class ScoreManager : MonoBehaviour
     // Update is called once per frame
     public void GameOver()
     {
+        float time = Time.deltaTime;
+        score = time * 100;
+        collectables++;
         if (lives == 0)
         {
             if (Highscore >= score)
@@ -36,6 +41,7 @@ public class ScoreManager : MonoBehaviour
                 HighScoreText.text = score.ToString();
             }
             scoreText.text = score.ToString();
+            CollectablesText.text = collectables.ToString();
         }
     }
 }
