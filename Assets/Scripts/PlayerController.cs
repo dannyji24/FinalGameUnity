@@ -9,7 +9,7 @@ public class PlayerController : MonoBehaviour
     public float gravityModifier;
     public bool isOnGround = true;
     public bool gameOver = false;
-    private float zRange = 2.2f;
+    private double zRange = 2.2f;
     private bool moveOr = true;
     // Start is called before the first frame update
     void Start()
