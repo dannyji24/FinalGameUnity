@@ -29,11 +29,15 @@ public class ScoreManager : MonoBehaviour
 
 
     // Update is called once per frame
+    public void addCollectables()
+    {
+        collectables++;
+    }
     public void GameOver()
     {
         float time = Time.deltaTime;
         score = time * 100;
-        collectables++;
+       
         if (lives == 0)
         {
             if (Highscore >= score)
