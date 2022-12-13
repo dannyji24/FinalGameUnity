@@ -10,8 +10,8 @@ public class PlayerController : MonoBehaviour
     public float gravityModifier;
     public bool isOnGround = true;
     public bool gameOver = false;
-    private double zRange = 2.2f;
     private bool moveOr = true;
+    private int desireLane = 1; // 0 left, 1 mid, 2 right
     // Start is called before the first frame update
     void Start()
     {
@@ -30,52 +30,42 @@ public class PlayerController : MonoBehaviour
         }
         if (isOnGround)
             moveOr = true;
-        if (transform.position.z > -zRange && Input.GetKeyDown(KeyCode.A) && moveOr)
+        if (desireLane >0&& Input.GetKeyDown(KeyCode.A) && moveOr)
         {
-            transform.Translate(Vector3.left * Time.deltaTime * 120);
+            desireLane--;
+            transform.Translate(Vector3.up * 2.4f);
         }
-        if (transform.position.z < zRange && Input.GetKeyDown(KeyCode.D) && moveOr)
+        if (desireLane <2&&Input.GetKeyDown(KeyCode.D) && moveOr)
         {
-            transform.Translate(Vector3.right * Time.deltaTime * 120);
+            desireLane++;
+            transform.Translate(Vector3.down * 2.4f);
         }
         SceneManager.LoadScene(sceneName: "GameOver");
 
+        SceneManager.LoadScene(sceneName: "GameOver");
+
+
     }
-    /*
+      
+   
     private void OnCollisionEnter(Collision collision)
     {
         if (collision.gameObject.CompareTag("Ground"))
         {
             isOnGround = true;
-            dirtParticle.Play();
         }
-        else if (collision.gameObject.CompareTag("Obstacle"))
+        else if (collision.gameObject.CompareTag("Obstacle1"))
         {
             gameOver = true;
+            SceneManager.LoadScene(sceneName: "GameOver");
             Debug.Log("Game Over!");
-            playerAnim.SetBool("Death_b", true);
-            playerAnim.SetInteger("DeathType_int", 1);
-            explosionParticle.Play();
-            dirtParticle.Stop();
-            playerAudio.PlayOneShot(crashSound, 1.0f);
         }
-        else if (collision.gameObject.CompareTag("Barrel") || collision.gameObject.CompareTag("Barrel2")|| 
-            collision.gameObject.CompareTag("wall"))
-        {
-            gameOver = true;
-            Debug.Log("Game Over!");
-            playerAnim.SetBool("Death_b", true);
-            playerAnim.SetInteger("DeathType_int", 1);
-            explosionParticle.Play();
-            dirtParticle.Stop();
-            playerAudio.PlayOneShot(crashSound, 1.0f);
-        }
-        else if (collision.gameObject.CompareTag("gold"))
+        
+        else if (collision.gameObject.CompareTag("StopSign"))
         {
             Debug.Log("+1");
-            playerAudio.PlayOneShot(crashSound, 1.0f);
         }
-       
+        
     }
-    */
+    
 }

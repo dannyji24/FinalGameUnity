@@ -8,10 +8,10 @@ public class ScoreManager : MonoBehaviour
     public static ScoreManager instance;
     public Text scoreText;
     public Text HighScoreText;
-    public Text CollectablesText;
 
-    double score = 0;
-    double Highscore;
+
+    float fScore = PlayerController.score;
+    float Highscore=0f;
     int collectables;
     public int lives = 1;
     
@@ -22,30 +22,31 @@ public class ScoreManager : MonoBehaviour
     }
     void Start()
     {
-        HighScoreText.text = "Highscore: ";
-        scoreText.text = "Score: " +score.ToString();
+        if (Highscore <= fScore)
+        {
+            Highscore = fScore;
+        }
+        
+        HighScoreText.text = "Highscore: " +Highscore.ToString();
+        scoreText.text = "Score: " +fScore.ToString();
        
     }
+
 
 
     // Update is called once per frame
-    public void addCollectables()
-    {
-        collectables++;
-    }
+  
     public void GameOver()
     {
-        float time = Time.deltaTime;
-        score = time * 100;
-       
-        if (lives == 0)
-        {
-            if (Highscore >= score)
+
+        HighScoreText.text = fScore.ToString();
+
+        if (Highscore <= fScore)
             {
-                HighScoreText.text =  score.ToString();
+                HighScoreText.text =  fScore.ToString();
             }
-            scoreText.text = score.ToString();
-            CollectablesText.text = "Collectables: " + collectables.ToString();
-        }
+            scoreText.text = fScore.ToString();
+            
+        
     }
 }

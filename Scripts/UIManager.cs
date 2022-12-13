@@ -8,27 +8,29 @@ using TMPro;
 public class UIManager : MonoBehaviour
 {
 
-    [SerializeField] private int playerScore;
+    [SerializeField] private float playerScore;
     [SerializeField] private TMP_Text scoreText;
+    private float timer;
 
     // Start is called before the first frame update
     void Start()
     {
-        playerScore = 0;
-    }
-    public void UpdateScore(int points)
-    {
-        playerScore += points;
-        scoreText.text = "Score: " + playerScore.ToString();
-        if (playerScore>=100)
-        {
-            Debug.Log("You Win!");
-        }
     }
     // Update is called once per frame
     void Update()
     {
+        timer += Time.deltaTime;
+        if (timer > 0.001f)
+        {
 
+            playerScore += 1;
+
+            //We only need to update the text if the score changed.
+            scoreText.text = "Score: " + playerScore;
+
+            //Reset the timer to 0.
+            timer = 0;
+        }
     }
 }
 
