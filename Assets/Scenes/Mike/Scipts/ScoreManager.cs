@@ -22,8 +22,8 @@ public class ScoreManager : MonoBehaviour
     }
     void Start()
     {
-        HighScoreText.text = " ";
-        scoreText.text = score.ToString();
+        HighScoreText.text = "Highscore: ";
+        scoreText.text = "Score: " +score.ToString();
        
     }
 
@@ -42,10 +42,10 @@ public class ScoreManager : MonoBehaviour
         {
             if (Highscore >= score)
             {
-                HighScoreText.text = score.ToString();
+                HighScoreText.text =  score.ToString();
             }
             scoreText.text = score.ToString();
-            CollectablesText.text = collectables.ToString();
+            CollectablesText.text = "Collectables: " + collectables.ToString();
         }
     }
 }
